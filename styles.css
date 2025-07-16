@@ -64,40 +64,48 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
-    padding: 0 12px;
+    padding: 0 16px;
     /* Ensure container uses full viewport */
     min-height: 100vh;
     min-height: 100dvh;
+}
+
+/* Desktop-first defaults */
+@media (min-width: 501px) {
+    .container {
+        padding: 0 20px;
+        max-width: 600px;
+    }
 }
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 0;
+    padding: 16px 0;
     border-bottom: 1px solid var(--light-gray);
-    margin-bottom: 8px;
-    min-height: 50px;
+    margin-bottom: 16px;
+    min-height: 60px;
 }
 
 h1 {
-    font-size: clamp(24px, 6vw, 32px);
+    font-size: 32px;
     font-weight: bold;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     margin: 0;
 }
 
 .header-icons {
     display: flex;
-    gap: 4px;
+    gap: 8px;
 }
 
 .icon-btn {
     background: none;
     border: none;
-    font-size: 18px;
+    font-size: 20px;
     cursor: pointer;
-    padding: 10px;
+    padding: 12px;
     border-radius: 6px;
     transition: background-color 0.3s;
     /* Better touch targets */
@@ -121,8 +129,8 @@ h1 {
 #game-board {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    margin-bottom: 16px;
+    gap: 8px;
+    margin-bottom: 32px;
     flex: 1;
     justify-content: center;
     max-width: 100%;
@@ -130,20 +138,18 @@ h1 {
 
 .row {
     display: flex;
-    gap: 4px;
+    gap: 8px;
     justify-content: center;
 }
 
 .tile {
-    width: min(62px, calc((100vw - 80px) / 5));
-    height: min(62px, calc((100vw - 80px) / 5));
-    max-width: 62px;
-    max-height: 62px;
+    width: 62px;
+    height: 62px;
     border: 2px solid var(--tile-border);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: clamp(20px, 4vw, 32px);
+    font-size: 32px;
     font-weight: bold;
     text-transform: uppercase;
     transition: all 0.2s;
@@ -193,28 +199,28 @@ h1 {
 }
 
 #keyboard {
-    margin-bottom: 16px;
+    margin-bottom: 32px;
     width: 100%;
 }
 
 .keyboard-row {
     display: flex;
-    gap: 3px;
+    gap: 6px;
     justify-content: center;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
 }
 
 .key {
     background-color: var(--key-bg);
     color: var(--key-text);
     border: none;
-    border-radius: 6px;
-    padding: 14px 8px;
-    font-size: clamp(12px, 3vw, 16px);
+    border-radius: 4px;
+    padding: 12px 8px;
+    font-size: 14px;
     font-weight: bold;
     cursor: pointer;
-    min-width: max(32px, calc((100vw - 80px) / 11));
-    height: 54px;
+    min-width: 40px;
+    height: 58px;
     transition: all 0.2s;
     /* Better touch targets */
     min-height: 44px;
@@ -240,9 +246,9 @@ h1 {
 }
 
 .key.wide {
-    min-width: max(48px, calc((100vw - 80px) / 7));
-    font-size: clamp(10px, 2.5vw, 12px);
-    padding: 14px 6px;
+    min-width: 65px;
+    font-size: 12px;
+    padding: 12px 6px;
 }
 
 .key.correct {
@@ -280,12 +286,12 @@ h1 {
 .modal-content {
     background-color: var(--modal-bg);
     color: var(--modal-text);
-    margin: 5% auto;
+    margin: 15% auto;
     padding: 20px;
-    border-radius: 12px;
-    width: calc(100% - 32px);
+    border-radius: 8px;
+    width: 90%;
     max-width: 500px;
-    max-height: 90vh;
+    max-height: 80vh;
     overflow-y: auto;
     /* Better scrolling on mobile */
     -webkit-overflow-scrolling: touch;
@@ -313,7 +319,6 @@ h1 {
 
 .close:hover {
     opacity: 0.7;
-    background-color: var(--light-gray);
 }
 
 .close:active {
@@ -466,12 +471,134 @@ input:checked + .slider:before {
 /* Mobile-specific optimizations */
 @media (max-width: 500px) {
     .container {
+        padding: 0 12px;
+    }
+    
+    header {
+        padding: 8px 0;
+        margin-bottom: 8px;
+        min-height: 50px;
+    }
+    
+    h1 {
+        font-size: clamp(24px, 6vw, 32px);
+        letter-spacing: 1px;
+    }
+    
+    .header-icons {
+        gap: 4px;
+    }
+    
+    .icon-btn {
+        min-width: 44px;
+        min-height: 44px;
+        font-size: 18px;
+        padding: 10px;
+    }
+    
+    #game-board {
+        gap: 4px;
+        margin-bottom: 16px;
+    }
+    
+    .row {
+        gap: 4px;
+    }
+    
+    .tile {
+        width: min(62px, calc((100vw - 80px) / 5));
+        height: min(62px, calc((100vw - 80px) / 5));
+        max-width: 62px;
+        max-height: 62px;
+        font-size: clamp(20px, 4vw, 32px);
+    }
+    
+    .keyboard-row {
+        gap: 3px;
+        margin-bottom: 6px;
+    }
+    
+    .key {
+        min-width: max(32px, calc((100vw - 80px) / 11));
+        height: 54px;
+        padding: 14px 8px;
+        font-size: clamp(12px, 3vw, 16px);
+    }
+    
+    .key.wide {
+        min-width: max(48px, calc((100vw - 80px) / 7));
+        font-size: clamp(10px, 2.5vw, 12px);
+        padding: 14px 6px;
+    }
+    
+    .spacer {
+        width: 16px;
+    }
+    
+    #keyboard {
+        margin-bottom: 16px;
+    }
+    
+    .modal-content {
+        margin: 5% auto;
+        padding: 20px;
+        width: calc(100% - 32px);
+        max-height: 90vh;
+        border-radius: 12px;
+    }
+    
+    .close {
+        min-width: 44px;
+        min-height: 44px;
+        font-size: 28px;
+    }
+    
+    .stats-container {
+        margin: 20px 0;
+    }
+    
+    .stat-value {
+        font-size: 32px;
+    }
+    
+    .stat-label {
+        font-size: 12px;
+    }
+    
+    .guess-distribution {
+        margin: 20px 0;
+    }
+    
+    .setting-item {
+        padding: 16px 0;
+    }
+    
+    .toggle {
+        width: 50px;
+        height: 24px;
+    }
+    
+    .slider:before {
+        width: 18px;
+        height: 18px;
+        left: 3px;
+        bottom: 3px;
+    }
+    
+    input:checked + .slider:before {
+        transform: translateX(26px);
+    }
+}
+
+/* Very small screens (phones in landscape) */
+@media (max-width: 380px) {
+    .container {
         padding: 0 8px;
     }
     
     header {
-        padding: 4px 0;
-        margin-bottom: 4px;
+        padding: 6px 0;
+        margin-bottom: 6px;
     }
     
     h1 {
@@ -520,77 +647,8 @@ input:checked + .slider:before {
         width: 12px;
     }
     
-    .modal-content {
-        margin: 2% auto;
-        padding: 16px;
-        width: calc(100% - 24px);
-        max-height: 95vh;
-    }
-    
-    .close {
-        min-width: 40px;
-        min-height: 40px;
-        font-size: 24px;
-    }
-    
-    .stats-container {
-        margin: 16px 0;
-    }
-    
-    .stat-value {
-        font-size: 28px;
-    }
-    
-    .stat-label {
-        font-size: 11px;
-    }
-    
-    .guess-distribution {
-        margin: 16px 0;
-    }
-    
-    .setting-item {
-        padding: 12px 0;
-    }
-    
-    .toggle {
-        width: 44px;
-        height: 22px;
-    }
-    
-    .slider:before {
-        width: 16px;
-        height: 16px;
-        left: 3px;
-        bottom: 3px;
-    }
-    
-    input:checked + .slider:before {
-        transform: translateX(22px);
-    }
-}
-
-/* Very small screens (phones in landscape) */
-@media (max-width: 380px) {
-    .container {
-        padding: 0 4px;
-    }
-    
-    .key {
-        min-width: max(24px, calc((100vw - 40px) / 11));
-        height: 42px;
-        padding: 8px 4px;
-        font-size: clamp(8px, 2vw, 12px);
-    }
-    
-    .key.wide {
-        min-width: max(36px, calc((100vw - 40px) / 7.5));
-        font-size: clamp(7px, 1.8vw, 9px);
-        padding: 8px 2px;
-    }
-    
-    .spacer {
-        width: 8px;
+    #keyboard {
+        margin-bottom: 12px;
     }
 }
 
