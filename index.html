@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wordle</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="favicon.ico">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>WORDLE</h1>
+            <div class="header-icons">
+                <button id="help-btn" class="icon-btn" title="Help">?</button>
+                <button id="settings-btn" class="icon-btn" title="Settings">⚙️</button>
+                <button id="stats-btn" class="icon-btn" title="Statistics">📊</button>
+                <button id="new-game-btn" class="icon-btn" title="New Game">🔄</button>
+            </div>
+        </header>
+
+        <div id="game-board"></div>
+        
+        <div id="keyboard">
+            <div class="keyboard-row">
+                <button class="key" data-key="q">Q</button>
+                <button class="key" data-key="w">W</button>
+                <button class="key" data-key="e">E</button>
+                <button class="key" data-key="r">R</button>
+                <button class="key" data-key="t">T</button>
+                <button class="key" data-key="y">Y</button>
+                <button class="key" data-key="u">U</button>
+                <button class="key" data-key="i">I</button>
+                <button class="key" data-key="o">O</button>
+                <button class="key" data-key="p">P</button>
+            </div>
+            <div class="keyboard-row">
+                <div class="spacer"></div>
+                <button class="key" data-key="a">A</button>
+                <button class="key" data-key="s">S</button>
+                <button class="key" data-key="d">D</button>
+                <button class="key" data-key="f">F</button>
+                <button class="key" data-key="g">G</button>
+                <button class="key" data-key="h">H</button>
+                <button class="key" data-key="j">J</button>
+                <button class="key" data-key="k">K</button>
+                <button class="key" data-key="l">L</button>
+                <div class="spacer"></div>
+            </div>
+            <div class="keyboard-row">
+                <button class="key wide" data-key="enter">ENTER</button>
+                <button class="key" data-key="z">Z</button>
+                <button class="key" data-key="x">X</button>
+                <button class="key" data-key="c">C</button>
+                <button class="key" data-key="v">V</button>
+                <button class="key" data-key="b">B</button>
+                <button class="key" data-key="n">N</button>
+                <button class="key" data-key="m">M</button>
+                <button class="key wide" data-key="backspace">⌫</button>
+            </div>
+        </div>
+
+        <!-- Help Modal -->
+        <div id="help-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>How to Play</h2>
+                <p>Guess the WORDLE in 6 tries.</p>
+                <p>Each guess must be a valid 5-letter word. Hit the enter button to submit.</p>
+                <p>After each guess, the color of the tiles will change to show how close your guess was to the word.</p>
+                
+                <h3>Examples</h3>
+                <div class="example">
+                    <div class="row">
+                        <div class="tile correct">W</div>
+                        <div class="tile">E</div>
+                        <div class="tile">A</div>
+                        <div class="tile">R</div>
+                        <div class="tile">Y</div>
+                    </div>
+                    <p><strong>W</strong> is in the word and in the correct spot.</p>
+                </div>
+                
+                <div class="example">
+                    <div class="row">
+                        <div class="tile">P</div>
+                        <div class="tile present">I</div>
+                        <div class="tile">L</div>
+                        <div class="tile">L</div>
+                        <div class="tile">S</div>
+                    </div>
+                    <p><strong>I</strong> is in the word but in the wrong spot.</p>
+                </div>
+                
+                <div class="example">
+                    <div class="row">
+                        <div class="tile">V</div>
+                        <div class="tile">A</div>
+                        <div class="tile">G</div>
+                        <div class="tile absent">U</div>
+                        <div class="tile">E</div>
+                    </div>
+                    <p><strong>U</strong> is not in the word in any spot.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Modal -->
+        <div id="stats-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Statistics</h2>
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <div class="stat-value" id="games-played">0</div>
+                        <div class="stat-label">Played</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="win-percentage">0</div>
+                        <div class="stat-label">Win %</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="current-streak">0</div>
+                        <div class="stat-label">Current Streak</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="max-streak">0</div>
+                        <div class="stat-label">Max Streak</div>
+                    </div>
+                </div>
+                
+                <h3>Guess Distribution</h3>
+                <div class="guess-distribution">
+                    <div class="guess-bar">
+                        <span>1</span>
+                        <div class="bar-container">
+                            <div class="bar" id="guess-1">0</div>
+                        </div>
+                    </div>
+                    <div class="guess-bar">
+                        <span>2</span>
+                        <div class="bar-container">
+                            <div class="bar" id="guess-2">0</div>
+                        </div>
+                    </div>
+                    <div class="guess-bar">
+                        <span>3</span>
+                        <div class="bar-container">
+                            <div class="bar" id="guess-3">0</div>
+                        </div>
+                    </div>
+                    <div class="guess-bar">
+                        <span>4</span>
+                        <div class="bar-container">
+                            <div class="bar" id="guess-4">0</div>
+                        </div>
+                    </div>
+                    <div class="guess-bar">
+                        <span>5</span>
+                        <div class="bar-container">
+                            <div class="bar" id="guess-5">0</div>
+                        </div>
+                    </div>
+                    <div class="guess-bar">
+                        <span>6</span>
+                        <div class="bar-container">
+                            <div class="bar" id="guess-6">0</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="next-wordle" class="next-wordle">
+                    <p>Next WORDLE</p>
+                    <p id="countdown">00:00:00</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Modal -->
+        <div id="settings-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Settings</h2>
+                <div class="setting-item">
+                    <label for="hard-mode">Hard Mode</label>
+                    <label class="toggle">
+                        <input type="checkbox" id="hard-mode">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label for="dark-mode">Dark Theme</label>
+                    <label class="toggle">
+                        <input type="checkbox" id="dark-mode">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label for="high-contrast">High Contrast Mode</label>
+                    <label class="toggle">
+                        <input type="checkbox" id="high-contrast">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label for="feedback-sounds">Feedback Sounds</label>
+                    <label class="toggle">
+                        <input type="checkbox" id="feedback-sounds" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notification -->
+        <div id="toast" class="toast"></div>
+    </div>
+
+    <script src="words.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
