@@ -1,0 +1,800 @@
+:root {
+    --green: #6aaa64;
+    --yellow: #c9b458;
+    --gray: #787c7e;
+    --light-gray: #d3d6da;
+    --white: #ffffff;
+    --black: #212121;
+    --border-gray: #878a8c;
+    --primary-blue: #4285f4;
+    --success-green: #34a853;
+    --warning-orange: #fbbc04;
+    --error-red: #ea4335;
+    --bg-light: #f8f9fa;
+    --shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--bg-light);
+    color: var(--black);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Screen Management */
+.screen {
+    display: none;
+    min-height: 100vh;
+}
+
+.screen.active {
+    display: block;
+}
+
+/* Main Menu Styles */
+#main-menu header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+#main-menu h1 {
+    font-size: 48px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    color: var(--primary-blue);
+}
+
+#main-menu h2 {
+    font-size: 24px;
+    color: var(--gray);
+    font-weight: normal;
+}
+
+.menu-options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.menu-btn {
+    background: white;
+    border: 2px solid var(--light-gray);
+    border-radius: 12px;
+    padding: 16px 32px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    min-width: 250px;
+    box-shadow: var(--shadow);
+}
+
+.menu-btn:hover {
+    border-color: var(--primary-blue);
+    transform: translateY(-2px);
+}
+
+.menu-btn.primary {
+    background: var(--primary-blue);
+    color: white;
+    border-color: var(--primary-blue);
+}
+
+.menu-btn.primary:hover {
+    background: #3367d6;
+}
+
+.menu-btn.secondary {
+    background: var(--light-gray);
+    color: var(--black);
+}
+
+.join-section {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--light-gray);
+}
+
+.join-section h3 {
+    margin-bottom: 15px;
+    color: var(--gray);
+}
+
+.join-input-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.join-input-group input {
+    padding: 12px 16px;
+    border: 2px solid var(--light-gray);
+    border-radius: 8px;
+    font-size: 16px;
+    text-transform: uppercase;
+    width: 200px;
+}
+
+.join-input-group button {
+    min-width: 80px;
+}
+
+/* Room Setup Styles */
+.setup-form {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--gray);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid var(--light-gray);
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+/* Game Room Styles */
+#game-room {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.room-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+}
+
+.room-info h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+    color: var(--primary-blue);
+}
+
+.room-code {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.copy-btn {
+    background: var(--success-green);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.player-status {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+    font-size: 14px;
+    color: var(--gray);
+}
+
+/* Host Controls */
+.host-panel {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    border-left: 4px solid var(--warning-orange);
+}
+
+.challenge-btn {
+    background: var(--success-green);
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.challenge-btn:hover {
+    background: #2d8a47;
+    transform: translateY(-2px);
+}
+
+.word-input {
+    background: var(--bg-light);
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.word-input h3 {
+    margin-bottom: 15px;
+    color: var(--black);
+}
+
+.word-input input {
+    width: 200px;
+    padding: 12px 16px;
+    border: 2px solid var(--light-gray);
+    border-radius: 8px;
+    font-size: 18px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+}
+
+.word-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.submit-btn {
+    background: var(--success-green);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    background: var(--error-red);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Hint Controls */
+.hint-controls {
+    background: var(--bg-light);
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.hint-controls h3 {
+    margin-bottom: 15px;
+    color: var(--black);
+}
+
+.hint-input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.hint-input-group input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 2px solid var(--light-gray);
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.char-counter {
+    font-size: 12px;
+    color: var(--gray);
+    min-width: 40px;
+}
+
+.hint-btn {
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Game Status */
+.game-status {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.status-message {
+    font-size: 18px;
+    color: var(--gray);
+    font-style: italic;
+}
+
+.hint-display {
+    margin-top: 15px;
+}
+
+.hint-box {
+    background: var(--warning-orange);
+    color: var(--black);
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.hint-label {
+    margin-right: 10px;
+}
+
+/* Player Controls */
+.player-section {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+}
+
+.join-section {
+    text-align: center;
+}
+
+.join-btn {
+    background: var(--success-green);
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.join-btn:hover {
+    background: #2d8a47;
+    transform: translateY(-2px);
+}
+
+.status-text {
+    margin-top: 10px;
+    color: var(--gray);
+    font-style: italic;
+}
+
+/* Game Board Styles */
+.my-board {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.board-row {
+    display: flex;
+    gap: 8px;
+}
+
+.board-tile {
+    width: 62px;
+    height: 62px;
+    border: 2px solid var(--light-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    background: white;
+}
+
+.board-tile.filled {
+    border-color: var(--border-gray);
+}
+
+.board-tile.correct {
+    background-color: var(--green);
+    border-color: var(--green);
+    color: white;
+}
+
+.board-tile.present {
+    background-color: var(--yellow);
+    border-color: var(--yellow);
+    color: white;
+}
+
+.board-tile.absent {
+    background-color: var(--gray);
+    border-color: var(--gray);
+    color: white;
+}
+
+/* Keyboard */
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+}
+
+.keyboard-row {
+    display: flex;
+    gap: 6px;
+}
+
+.key {
+    background-color: var(--light-gray);
+    color: var(--black);
+    border: none;
+    border-radius: 4px;
+    padding: 12px 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    min-width: 40px;
+    height: 58px;
+    transition: all 0.2s;
+}
+
+.key:hover {
+    opacity: 0.8;
+}
+
+.key:active {
+    transform: scale(0.95);
+}
+
+.key.wide {
+    min-width: 65px;
+    font-size: 12px;
+}
+
+.key.correct {
+    background-color: var(--green);
+    color: white;
+}
+
+.key.present {
+    background-color: var(--yellow);
+    color: white;
+}
+
+.key.absent {
+    background-color: var(--gray);
+    color: white;
+}
+
+/* Spectator Boards */
+.spectator-view {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+}
+
+.spectator-view h3 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: var(--primary-blue);
+}
+
+.boards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.player-board {
+    border: 2px solid var(--light-gray);
+    border-radius: 8px;
+    padding: 15px;
+    background: var(--bg-light);
+}
+
+.player-board.host {
+    border-color: var(--warning-orange);
+    background: #fffbf0;
+}
+
+.player-name {
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+    color: var(--primary-blue);
+}
+
+.mini-board {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+}
+
+.mini-row {
+    display: flex;
+    gap: 4px;
+}
+
+.mini-tile {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--light-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    background: white;
+}
+
+.mini-tile.filled {
+    border-color: var(--border-gray);
+}
+
+.mini-tile.correct {
+    background-color: var(--green);
+    border-color: var(--green);
+    color: white;
+}
+
+.mini-tile.present {
+    background-color: var(--yellow);
+    border-color: var(--yellow);
+    color: white;
+}
+
+.mini-tile.absent {
+    background-color: var(--gray);
+    border-color: var(--gray);
+    color: white;
+}
+
+/* Chat Styles */
+.chat-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.chat-message {
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: var(--bg-light);
+}
+
+.chat-message.host {
+    background: #fffbf0;
+    border-left: 3px solid var(--warning-orange);
+}
+
+.message-author {
+    font-weight: bold;
+    color: var(--primary-blue);
+    font-size: 14px;
+}
+
+.message-text {
+    margin-top: 2px;
+}
+
+.chat-input-area {
+    display: flex;
+    padding: 15px;
+    gap: 10px;
+}
+
+.chat-input-area input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 2px solid var(--light-gray);
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.send-btn {
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Player List */
+.player-list {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.player-list h4 {
+    margin-bottom: 15px;
+    color: var(--primary-blue);
+}
+
+.player-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.player-item:last-child {
+    border-bottom: none;
+}
+
+.player-name-role {
+    font-weight: bold;
+}
+
+.player-status {
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.player-status.host {
+    background: var(--warning-orange);
+    color: var(--black);
+}
+
+.player-status.playing {
+    background: var(--success-green);
+    color: white;
+}
+
+.player-status.spectating {
+    background: var(--light-gray);
+    color: var(--black);
+}
+
+/* Toast Notifications */
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--black);
+    color: var(--white);
+    padding: 16px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 2000;
+}
+
+.toast.show {
+    opacity: 1;
+}
+
+.toast.success {
+    background-color: var(--success-green);
+}
+
+.toast.error {
+    background-color: var(--error-red);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .room-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .boards-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .hint-input-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .word-actions,
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .join-input-group {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .join-input-group input {
+        width: 250px;
+    }
+}
+
+/* Animations */
+@keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.board-tile.filled {
+    animation: pop 0.1s;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.chat-message {
+    animation: slideIn 0.2s ease-out;
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Multiplayer Wordle</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        button { padding: 10px 20px; margin: 10px; background: #4285f4; color: white; border: none; cursor: pointer; }
+        input { padding: 10px; margin: 5px; border: 1px solid #ccc; }
+        #log { background: #f0f0f0; padding: 10px; margin: 10px 0; max-height: 300px; overflow-y: auto; }
+    </style>
+</head>
+<body>
+    <h1>Debug Multiplayer Wordle</h1>
+    
+    <div>
+        <h3>Create Room</h3>
+        <input type="text" id="room-name" placeholder="Room Name" value="Test Room">
+        <input type="text" id="host-name" placeholder="Your Name" value="Host">
+        <button onclick="createRoom()">Create Room</button>
+    </div>
+    
+    <div>
+        <h3>Join Room</h3>
+        <input type="text" id="room-code" placeholder="Room Code">
+        <input type="text" id="player-name" placeholder="Your Name" value="Player">
+        <button onclick="joinRoom()">Join Room</button>
+    </div>
+    
+    <div id="log"></div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        function log(message) {
+            const logDiv = document.getElementById('log');
+            logDiv.innerHTML += '<div>' + new Date().toLocaleTimeString() + ': ' + message + '</div>';
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+        
+        log('Page loaded');
+        
+        let socket = null;
+        
+        function initSocket() {
+            if (socket) return;
+            
+            log('Connecting to server...');
+            socket = io();
+            
+            socket.on('connect', () => {
+                log('Connected to server!');
+            });
+            
+            socket.on('disconnect', () => {
+                log('Disconnected from server');
+            });
+            
+            socket.on('room-created', (data) => {
+                log('Room created: ' + JSON.stringify(data));
+            });
+            
+            socket.on('room-joined', (data) => {
+                log('Room joined: ' + JSON.stringify(data));
+            });
+            
+            socket.on('error', (error) => {
+                log('Error: ' + error.message);
+            });
+        }
+        
+        function createRoom() {
+            initSocket();
+            const roomName = document.getElementById('room-name').value;
+            const hostName = document.getElementById('host-name').value;
+            
+            log('Creating room: ' + roomName + ' with host: ' + hostName);
+            socket.emit('create-room', { roomName, hostName });
+        }
+        
+        function joinRoom() {
+            initSocket();
+            const roomCode = document.getElementById('room-code').value;
+            const playerName = document.getElementById('player-name').value;
+            
+            log('Joining room: ' + roomCode + ' as: ' + playerName);
+            socket.emit('join-room', { roomCode, playerName });
+        }
+    </script>
+</body>
+</html>
