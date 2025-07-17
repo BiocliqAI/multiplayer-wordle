@@ -1,0 +1,14 @@
+# This file explains why multiplayer Wordle cannot be deployed on Netlify
+# Netlify only supports static sites, but this app requires:
+# - Node.js server
+# - Socket.io for real-time multiplayer
+# - Server-side game state management
+
+# For multiplayer deployment, use:
+# - Railway: https://railway.app
+# - Render: https://render.com  
+# - Heroku: https://heroku.com
+# - Vercel: https://vercel.com
+
+# The single-player version can be deployed on Netlify
+# by using index.html instead of multiplayer-index.html
